@@ -45,24 +45,40 @@ def save_matrix(df, matrix, output):
     pass
 
 df_train = get_df(train_input)
-train_words = np.array(df_train.text.str.lower().values.astype('U'))
+print(df_train.shape)
+# print(df_train.columns)
+print(df_train.dtypes)
+print('step1')
+# train_words = np.array(df_train.text.str.lower().values.astype('U'))
+train_words = df_train.text.str.lower().values.astype('U')
+print(train_words.shape, train_words.dtype)
 
+print('step2')
 bag_of_words = CountVectorizer(stop_words='english',
                                max_features=5000)
+print('step3')
 bag_of_words.fit(train_words)
+print('step4')
 train_words_binary_matrix = bag_of_words.transform(train_words)
 
+print('step5')
 tfidf = TfidfTransformer(smooth_idf=False)
+print('step6')
 tfidf.fit(train_words_binary_matrix)
+print('step7')
 train_words_tfidf_matrix = tfidf.transform(train_words_binary_matrix)
-
+print('step8')
 save_matrix(df_train, train_words_tfidf_matrix, train_output)
 del df_train
 
 df_test = get_df(test_input)
-test_words = np.array(df_test.text.str.lower().values.astype('U'))
+print('step2-1')
+#test_words = np.array(df_test.text.str.lower().values.astype('U'))
+test_words = df_test.text.str.lower().values.astype('U')
+print('step2-2')
 test_words_binary_matrix = bag_of_words.transform(test_words)
+print('step2-3')
 test_words_tfidf_matrix = tfidf.transform(test_words_binary_matrix)
-
+print('step2-4')
 save_matrix(df_test, test_words_tfidf_matrix, test_output)
 

@@ -1,0 +1,17 @@
+cmd: python code/featurization.py
+deps:
+- md5: 9bf120f6092af888c57a896bd6323e04
+  path: code/featurization.py
+- md5: 17f591c0c65a450fd53b34ba0ac6df7b
+  path: code/conf.py
+- md5: baf1e59b9cf41021bf263499a066fc4e
+  path: data/Posts-train.tsv
+- md5: 5f42ecd9a121b4382cd6510534533ec3
+  path: data/Posts-test.tsv
+outs:
+- cache: true
+  md5: cb2ed2fb8dffd40ab3c1b86b2549469a
+  path: data/matrix-train.p
+- cache: true
+  md5: 2e13f6c4e0542ee5f88453c81fc63ac6
+  path: data/matrix-test.p
